@@ -19,12 +19,14 @@ public class UniversityDepartmentInfoRepositoryImpl implements UniversityDepartm
     }
 
     @Override
-    public List<UniversityDepartmentInfo> departmentSearch(String keyword, Pageable pageable) {
+    public List<UniversityDepartmentInfo> departmentSearch(String keyword, String area, String degree, Pageable pageable) {
         List<UniversityDepartmentInfo> result = queryFactory
                 .selectFrom(universityDepartmentInfo)
                 .where(
                         universityDepartmentInfo.universityName.like("%" + keyword + "%")
-                                .or(universityDepartmentInfo.departmentName.like("%" + keyword + "%"))
+                        .or(universityDepartmentInfo.departmentName.like("%" + keyword + "%"))
+                        .and(universityDepartmentInfo.area.like("%" + area + "%"))
+                        .and(universityDepartmentInfo.degree.like("%" + degree + "%"))
                 )
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())

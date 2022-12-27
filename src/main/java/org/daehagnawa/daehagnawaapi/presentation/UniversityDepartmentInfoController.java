@@ -18,10 +18,12 @@ public class UniversityDepartmentInfoController {
     @GetMapping(value = "/department")
     public DepartmentInfoListResponseDto getDepartmentList(
             @RequestParam(value = "keyword", defaultValue = "") String keyword,
+            @RequestParam(value = "area", defaultValue = "") String area,
+            @RequestParam(value = "degree", defaultValue = "") String degree,
             @PageableDefault(size = 10) Pageable pageable
     ) {
 
-        return service.getDepartment(keyword, pageable);
+        return service.getDepartment(keyword, area, degree, pageable);
     }
 
     @GetMapping(value = "/last/department")

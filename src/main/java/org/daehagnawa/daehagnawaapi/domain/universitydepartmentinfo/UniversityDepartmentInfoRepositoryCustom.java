@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface UniversityDepartmentInfoRepositoryCustom {
 
-    List<UniversityDepartmentInfo> departmentSearch(@Param("keyword") String keyword, Pageable pageable);
+    List<UniversityDepartmentInfo> departmentSearch(String keyword, String area, String degree, Pageable pageable);
 
-    List<UniversityLastDepartmentInfo> lastDepartmentSearch(@Param("keyword") String keyword, Pageable pageable);
+    List<UniversityLastDepartmentInfo> lastDepartmentSearch(String keyword, Pageable pageable);
 
     BatchJobExecution get();
 }

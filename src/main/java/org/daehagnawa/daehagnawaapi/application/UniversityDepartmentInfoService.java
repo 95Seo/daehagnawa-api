@@ -14,9 +14,18 @@ public class UniversityDepartmentInfoService {
 
     private final UniversityDepartmentInfoRepository departmentRepository;
 
-    public DepartmentInfoListResponseDto getDepartment(String keyword, Pageable pageable) {
+    public DepartmentInfoListResponseDto getDepartment(
+            String keyword,
+            String area,
+            String degree,
+            Pageable pageable
+    ) {
         return DepartmentInfoListResponseDto.builder()
-                .list(departmentRepository.departmentSearch(keyword, pageable))
+                .list(departmentRepository.departmentSearch(
+                        keyword,
+                        area,
+                        degree,
+                        pageable))
                 .endTime(departmentRepository.get().getEndTime())
 //                .endTime(null)
                 .build();

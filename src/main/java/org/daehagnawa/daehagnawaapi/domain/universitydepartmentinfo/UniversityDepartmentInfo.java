@@ -54,13 +54,17 @@ public class UniversityDepartmentInfo {
 
     // 지역
     @Comment("지역")
-    @Column(name = "area", columnDefinition = "TEXT", nullable = true)
+    @Column(name = "area", columnDefinition = "varchar(2)", nullable = true)
     private String area;
 
     // 학위
     @Comment("학위")
-    @Column(name = "degree", columnDefinition = "TEXT", nullable = true)
+    @Column(name = "degree", columnDefinition = "varchar(3)", nullable = true)
     private String degree;
+
+    @Comment("입시년도")
+    @Column(name = "entrance_exam_year", columnDefinition = "int", nullable = true)
+    private int entranceExamYear;
 
     @CreatedDate
     @Comment("데이터 생성일")
@@ -82,6 +86,7 @@ public class UniversityDepartmentInfo {
             float competitionRatio,
             String area,
             String degree,
+            int entranceExamYear,
             LocalDateTime createdAt,
             LocalDateTime updatedAt
     ) {
@@ -94,6 +99,7 @@ public class UniversityDepartmentInfo {
         this.competitionRatio = competitionRatio;
         this.area = area;
         this.degree = degree;
+        this.entranceExamYear = entranceExamYear;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
