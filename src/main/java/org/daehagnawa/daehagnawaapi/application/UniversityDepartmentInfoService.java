@@ -27,13 +27,21 @@ public class UniversityDepartmentInfoService {
                         degree,
                         pageable))
                 .endTime(departmentRepository.get().getEndTime())
-//                .endTime(null)
                 .build();
     }
 
-    public LastDepartmentInfoListResponseDto getLastDepartment(String keyword, Pageable pageable) {
+    public LastDepartmentInfoListResponseDto getLastDepartment(
+            String keyword,
+            String area,
+            String degree,
+            Pageable pageable
+    ) {
         return LastDepartmentInfoListResponseDto.builder()
-                .list(departmentRepository.lastDepartmentSearch(keyword, pageable))
+                .list(departmentRepository.lastDepartmentSearch(
+                        keyword,
+                        area,
+                        degree,
+                        pageable))
                 .endTime(null)
                 .build();
     }

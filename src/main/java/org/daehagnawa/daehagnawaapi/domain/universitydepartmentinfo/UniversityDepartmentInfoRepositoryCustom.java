@@ -9,7 +9,7 @@ public interface UniversityDepartmentInfoRepositoryCustom {
 
     List<UniversityDepartmentInfo> departmentSearch(String keyword, String area, String degree, Pageable pageable);
 
-    List<UniversityLastDepartmentInfo> lastDepartmentSearch(String keyword, Pageable pageable);
+    List<UniversityLastDepartmentInfo> lastDepartmentSearch(String keyword, String area, String degree, Pageable pageable);
 
     BatchJobExecution get();
 }
