@@ -30,8 +30,8 @@ public class UniversityDepartmentInfoRepositoryImpl implements UniversityDepartm
                 .where(
                         universityDepartmentInfo.universityName.like("%" + keyword + "%")
                         .or(universityDepartmentInfo.departmentName.like("%" + keyword + "%"))
-                        .and(universityDepartmentInfo.area.like("%" + area + "%"))
-                        .and(universityDepartmentInfo.degree.like("%" + degree + "%"))
+                        .and(universityDepartmentInfo.universityArea.like("%" + area + "%"))
+                        .and(universityDepartmentInfo.universityDegree.like("%" + degree + "%"))
                 )
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -47,8 +47,8 @@ public class UniversityDepartmentInfoRepositoryImpl implements UniversityDepartm
                 .where(
                         universityLastDepartmentInfo.universityName.like("%" + keyword + "%")
                         .or(universityLastDepartmentInfo.departmentName.like("%" + keyword + "%"))
-                        .and(universityLastDepartmentInfo.area.like("%" + area + "%"))
-                        .and(universityLastDepartmentInfo.degree.like("%" + degree + "%"))
+                        .and(universityLastDepartmentInfo.universityArea.like("%" + area + "%"))
+                        .and(universityLastDepartmentInfo.universityDegree.like("%" + degree + "%"))
                 )
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())

@@ -52,29 +52,25 @@ public class UniversityDepartmentInfo {
     @Column(name = "competition_ratio", columnDefinition = "FLOAT", nullable = false)
     private float competitionRatio;
 
-    // 지역
     @Comment("지역")
-    @Column(name = "area", columnDefinition = "varchar(2)", nullable = true)
-    private String area;
+    @Column(name = "university_area", columnDefinition = "CHAR(2)", nullable = false)
+    private String universityArea;
 
-    // 학위
     @Comment("학위")
-    @Column(name = "degree", columnDefinition = "varchar(3)", nullable = true)
-    private String degree;
+    @Column(name = "university_degree", columnDefinition = "CHAR(3)", nullable = false)
+    private String universityDegree;
 
     @Comment("입시년도")
-    @Column(name = "entrance_exam_year", columnDefinition = "int", nullable = true)
+    @Column(name = "entrance_exam_year", columnDefinition = "INT", nullable = false)
     private int entranceExamYear;
 
-    @CreatedDate
-    @Comment("데이터 생성일")
-    @Column(name = "created_at", columnDefinition = "DATETIME")
-    private LocalDateTime createdAt;
+    @Comment("원서 접수 사이트 URL")
+    @Column(name = "reception_url", columnDefinition = "TEXT", nullable = false)
+    private String receptionUrl;
 
-    @LastModifiedDate
-    @Comment("데이터 수정일")
-    @Column(name = "updated_at", columnDefinition = "DATETIME")
-    private LocalDateTime updatedAt;
+    @Comment("크롤링 타입 구분 (uway, jinhak)")
+    @Column(name = "type", columnDefinition = "VARCHAR(6)", nullable = false)
+    private String type;
 
     public UniversityDepartmentInfo(
             Long id,
@@ -84,11 +80,11 @@ public class UniversityDepartmentInfo {
             String recruitmentCount,
             String applicantsCount,
             float competitionRatio,
-            String area,
-            String degree,
+            String universityArea,
+            String universityDegree,
             int entranceExamYear,
-            LocalDateTime createdAt,
-            LocalDateTime updatedAt
+            String receptionUrl,
+            String type
     ) {
         this.id = id;
         this.universityName = universityName;
@@ -97,10 +93,10 @@ public class UniversityDepartmentInfo {
         this.recruitmentCount = recruitmentCount;
         this.applicantsCount = applicantsCount;
         this.competitionRatio = competitionRatio;
-        this.area = area;
-        this.degree = degree;
+        this.universityArea = universityArea;
+        this.universityDegree = universityDegree;
         this.entranceExamYear = entranceExamYear;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.receptionUrl = receptionUrl;
+        this.type = type;
     }
 }
