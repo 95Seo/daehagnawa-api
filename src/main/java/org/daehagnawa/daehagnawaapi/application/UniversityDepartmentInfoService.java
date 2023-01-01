@@ -7,6 +7,7 @@ import org.daehagnawa.daehagnawaapi.dto.DepartmentInfoListResponseDto;
 import org.daehagnawa.daehagnawaapi.dto.LastDepartmentInfoListResponseDto;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 @RequiredArgsConstructor
@@ -15,14 +16,16 @@ public class UniversityDepartmentInfoService {
     private final UniversityDepartmentInfoRepository departmentRepository;
 
     public DepartmentInfoListResponseDto getDepartment(
-            String keyword,
+            String universityKeyword,
+            String departmentKeyword,
             String area,
             String degree,
             Pageable pageable
     ) {
         return DepartmentInfoListResponseDto.builder()
                 .list(departmentRepository.departmentSearch(
-                        keyword,
+                        universityKeyword,
+                        departmentKeyword,
                         area,
                         degree,
                         pageable))
@@ -31,14 +34,16 @@ public class UniversityDepartmentInfoService {
     }
 
     public LastDepartmentInfoListResponseDto getLastDepartment(
-            String keyword,
+            String universityKeyword,
+            String departmentKeyword,
             String area,
             String degree,
             Pageable pageable
     ) {
         return LastDepartmentInfoListResponseDto.builder()
                 .list(departmentRepository.lastDepartmentSearch(
-                        keyword,
+                        universityKeyword,
+                        departmentKeyword,
                         area,
                         degree,
                         pageable))

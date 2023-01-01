@@ -17,24 +17,46 @@ public class UniversityDepartmentInfoController {
 
     @GetMapping(value = "/department")
     public DepartmentInfoListResponseDto getDepartmentList(
-            @RequestParam(value = "keyword", defaultValue = "") String keyword,
-            @RequestParam(value = "area", defaultValue = "") String area,
-            @RequestParam(value = "degree", defaultValue = "") String degree,
+            @RequestParam(value = "universityKeyword", defaultValue = "") String universityKeyword,
+            @RequestParam(value = "departmentKeyword", defaultValue = "") String departmentKeyword,
+            @RequestParam(value = "universityArea", defaultValue = "") String area,
+            @RequestParam(value = "universityDegree", defaultValue = "") String degree,
             @PageableDefault(size = 10) Pageable pageable
     ) {
 
-        return service.getDepartment(keyword, area, degree, pageable);
+        System.out.println("universityKeyword = " + universityKeyword);
+
+        System.out.println("departmentKeyword = " + departmentKeyword);
+
+        departmentKeyword = departmentKeyword.replaceAll(" ", "");
+
+        if (area.equals("전체"))
+            area = "";
+
+        if (degree.equals("전체"))
+            degree = "";
+
+        return service.getDepartment(universityKeyword, departmentKeyword, area, degree, pageable);
     }
 
     @GetMapping(value = "/last/department")
     public LastDepartmentInfoListResponseDto getLastDepartmentList(
-            @RequestParam(value = "keyword", defaultValue = "") String keyword,
-            @RequestParam(value = "area", defaultValue = "") String area,
-            @RequestParam(value = "degree", defaultValue = "") String degree,
+            @RequestParam(value = "universityKeyword", defaultValue = "") String universityKeyword,
+            @RequestParam(value = "departmentKeyword", defaultValue = "") String departmentKeyword,
+            @RequestParam(value = "universityArea", defaultValue = "") String area,
+            @RequestParam(value = "universityDegree", defaultValue = "") String degree,
             @PageableDefault(size = 10) Pageable pageable
     ) {
 
-        return service.getLastDepartment(keyword, area, degree, pageable);
+        departmentKeyword = departmentKeyword.replaceAll(" ", "");
+
+        if (area.equals("전체"))
+            area = "";
+
+        if (degree.equals("전체"))
+            degree = "";
+
+        return service.getLastDepartment(universityKeyword, departmentKeyword, area, degree, pageable);
     }
 
     @GetMapping(value = "/d")

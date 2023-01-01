@@ -2,13 +2,11 @@ package org.daehagnawa.daehagnawaapi.domain.universitydepartmentinfo;
 
 import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
-import com.querydsl.core.types.dsl.PathBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.daehagnawa.daehagnawaapi.domain.universitydepartmentinfo.QBatchJobExecution.batchJobExecution;
@@ -24,12 +22,18 @@ public class UniversityDepartmentInfoRepositoryImpl implements UniversityDepartm
     }
 
     @Override
-    public List<UniversityDepartmentInfo> departmentSearch(String keyword, String area, String degree, Pageable pageable) {
+    public List<UniversityDepartmentInfo> departmentSearch(
+            String universityKeyword,
+            String departmentKeyword,
+            String area,
+            String degree,
+            Pageable pageable
+    ) {
         List<UniversityDepartmentInfo> result = queryFactory
                 .selectFrom(universityDepartmentInfo)
                 .where(
-                        universityDepartmentInfo.universityName.like("%" + keyword + "%")
-                        .or(universityDepartmentInfo.departmentName.like("%" + keyword + "%"))
+                        universityDepartmentInfo.universityName.like("%" + universityKeyword + "%")
+                        .and(universityDepartmentInfo.departmentName.like("%" + departmentKeyword + "%"))
                         .and(universityDepartmentInfo.universityArea.like("%" + area + "%"))
                         .and(universityDepartmentInfo.universityDegree.like("%" + degree + "%"))
                 )
@@ -41,12 +45,18 @@ public class UniversityDepartmentInfoRepositoryImpl implements UniversityDepartm
     }
 
     @Override
-    public List<UniversityLastDepartmentInfo> lastDepartmentSearch(String keyword, String area, String degree, Pageable pageable) {
+    public List<UniversityLastDepartmentInfo> lastDepartmentSearch(
+            String universityKeyword,
+            String departmentKeyword,
+            String area,
+            String degree,
+            Pageable pageable
+    ) {
         List<UniversityLastDepartmentInfo> result = queryFactory
                 .selectFrom(universityLastDepartmentInfo)
                 .where(
-                        universityLastDepartmentInfo.universityName.like("%" + keyword + "%")
-                        .or(universityLastDepartmentInfo.departmentName.like("%" + keyword + "%"))
+                        universityLastDepartmentInfo.universityName.like("%" + universityKeyword + "%")
+                        .and(universityLastDepartmentInfo.departmentName.like("%" + departmentKeyword + "%"))
                         .and(universityLastDepartmentInfo.universityArea.like("%" + area + "%"))
                         .and(universityLastDepartmentInfo.universityDegree.like("%" + degree + "%"))
                 )
